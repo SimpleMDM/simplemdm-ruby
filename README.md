@@ -22,29 +22,31 @@ Or install it yourself as:
 
 Full documentation is available here: [http://www.simplemdm.com/docs/api/](http://www.simplemdm.com/docs/api/)
 
-    require 'simplemdm'
+```ruby
+require 'simplemdm'
 
-    # provide your api key for access
+# provide your api key for access
 
-    SimpleMDM::api_key = 'j75m8YtUGEaEO5TysjzAXihE07nKoUm9'
+SimpleMDM::api_key = 'j75m8YtUGEaEO5TysjzAXihE07nKoUm9'
 
-    # lock a device
+# lock a device
 
-    device = SimpleMDM::Device.find(23)
-    device.lock message:      "This device has been locked. Please call the number provided.",
-    		    phone_number: "5035555847"
+device = SimpleMDM::Device.find(23)
+device.lock message:      "This device has been locked. Please call the number provided.",
+		    phone_number: "5035555847"
 
 
-    # upload an enterprise app and deploy it to a group of devices
+# upload an enterprise app and deploy it to a group of devices
 
-    app_data = IO.binread('surfreport2.2.ipa')
-    app      = SimpleMDM::App.new name:   "Surf Report",
-                                  binary: data
-    app.save
+app_data = IO.binread('surfreport2.2.ipa')
+app      = SimpleMDM::App.new name:   "Surf Report",
+                              binary: data
+app.save
 
-    app_group = SimpleMDM::AppGroup.find(37)
-    app_group.add_app(app)
-    app_group.push_apps
+app_group = SimpleMDM::AppGroup.find(37)
+app_group.add_app(app)
+app_group.push_apps
+```
 
 
 ## Development
