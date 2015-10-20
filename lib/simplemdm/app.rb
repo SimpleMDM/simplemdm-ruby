@@ -60,7 +60,7 @@ module SimpleMDM
     def destroy
       raise "You cannot delete an app that hasn't been created yet." if new?
 
-      hash, code = fetch("apps/#{self.id}")
+      hash, code = fetch("apps/#{self.id}", :delete)
 
       code == 204
     end

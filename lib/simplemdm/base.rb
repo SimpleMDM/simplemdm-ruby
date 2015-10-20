@@ -44,7 +44,11 @@ module SimpleMDM
     def self.fetch(method, verb = :get, params = {})
       headers = { 'SIMPLEMDM-CLIENT-VERSION' => SimpleMDM::VERSION }
       url  = SimpleMDM.api_url + method
-      resp = RestClient.send(verb, url, params, headers)
+      if [:get, :delete].include? verb
+        resp = RestClient.send(verb, url, headers)
+      else
+        resp = RestClient.send(verb, url, params, headers)
+      end
 
       begin
         hash = JSON.parse(resp)
