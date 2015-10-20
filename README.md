@@ -1,13 +1,13 @@
 # SimpleMDM Ruby bindings
 
-This is a lightweight SDK that acts as a launching point for integrating ruby-based applications with SimpleMDM. The native API is a RESTful JSON implementation. These bindings wrap the API.
+This is a lightweight SDK that acts as a launching point for integrating ruby-based applications with [SimpleMDM](http://www.simplemdm.com/). The native API is a RESTful JSON implementation. These bindings wrap the API.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'simplemdm-ruby'
+gem 'simplemdm'
 ```
 
 And then execute:
@@ -16,11 +16,36 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install simplemdm-ruby
+    $ gem install simplemdm
 
 ## Usage
 
-Full documentation is available here: (http://www.simplemdm.com/docs/api/)[http://www.simplemdm.com/docs/api/]
+Full documentation is available here: [http://www.simplemdm.com/docs/api/](http://www.simplemdm.com/docs/api/)
+
+    require 'simplemdm'
+
+    # provide your api key for access
+
+    SimpleMDM::api_key = 'j75m8YtUGEaEO5TysjzAXihE07nKoUm9'
+
+    # lock a device
+
+    device = SimpleMDM::Device.find(23)
+    device.lock message:      "This device has been locked. Please call the number provided.",
+    		    phone_number: "5035555847"
+
+
+    # upload an enterprise app and deploy it to a group of devices
+
+    app_data = IO.binread('surfreport2.2.ipa')
+    app      = SimpleMDM::App.new name:   "Surf Report",
+                                  binary: data
+    app.save
+
+    app_group = SimpleMDM::AppGroup.find(37)
+    app_group.add_app(app)
+    app_group.push_apps
+
 
 ## Development
 
