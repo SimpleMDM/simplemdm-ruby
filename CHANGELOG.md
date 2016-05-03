@@ -7,5 +7,5 @@
 ### Fixed
 - Gem properly declares 'Hashie' gem dependency now.
 
-## 0.1.0 - 2015-10-20
+## [0.1.0] - 2015-10-20
 - Initial release
