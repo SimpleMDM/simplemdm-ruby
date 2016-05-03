@@ -26,6 +26,10 @@ module SimpleMDM
             attrs['device_group_ids'] = hash['relationships']['device_groups']['data'].collect { |o| o['id'] }
           end
 
+          if hash['relationships']['devices']
+            attrs['device_ids'] = hash['relationships']['devices']['data'].collect { |o| o['id'] }
+          end
+
           if hash['relationships']['apps']
             attrs['app_ids'] = hash['relationships']['apps']['data'].collect { |o| o['id'] }
           end

@@ -124,6 +124,36 @@ module SimpleMDM
       end
     end
 
+    def add_device(device)
+      raise "You must save this app group before changing associations." if new?
+      raise "The object you provided is not a device" unless device.kind_of?(SimpleMDM::Device)
+      raise "You must save the device before associating it" if device.id.nil?
+
+      hash, code = fetch("app_groups/#{self.id}/devices/#{device.id}", :post)
+
+      if code == 204
+        self['device_ids'] = self['device_ids'] | [device.id]
+        true
+      else
+        false
+      end
+    end
+
+    def remove_device(device)
+      raise "You must save this app group before changing associations" if new?
+      raise "The object you provided is not a device" unless device.kind_of?(SimpleMDM::Device)
+      raise "The device you provided doesn't exist" if device.id.nil?
+
+      hash, code = fetch("app_groups/#{self.id}/devices/#{device.id}", :delete)
+
+      if code == 204
+        self['device_ids'].delete(device.id)
+        true
+      else
+        false
+      end
+    end
+
     def push_apps
       raise "You cannot push apps for an app group that hasn't been created yet" if new?
 
