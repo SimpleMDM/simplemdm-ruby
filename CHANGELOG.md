@@ -1,6 +1,6 @@
 # Change Log
 
-## [0.1.1] - 2016-05-03
+## [0.2.0] - 2016-05-03
 ### Added
 - Add and remove devices from app groups.
 
