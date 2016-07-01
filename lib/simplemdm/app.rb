@@ -27,19 +27,9 @@ module SimpleMDM
       @binary_file = val
     end
 
-    def name=(val)
-      if val != self.name
-        @dirty = true
-      end
-
-      self['name'] = val
-    end
-
     def save
-      if @dirty || new?
-        params = {}
-        params[:name]   = self.name
-        params[:binary] = @binary_file unless @binary_file.nil?
+      if (@dirty || new?) && @binary_file
+        params = { binary: @binary_file }
 
         if new?
           hash, code = fetch("apps", :post, params)
@@ -48,6 +38,7 @@ module SimpleMDM
           self.merge!(hash['data']['attributes'])
         else
           hash, code = fetch("apps/#{self.id}", :patch, params)
+          self.merge!(hash['data']['attributes'])
         end
 
         @dirty       = false
