@@ -14,7 +14,7 @@ module SimpleMDM
     end
 
     def add_device(device)
-      raise "The object you provided is not a device" unless app.kind_of?(SimpleMDM::Device)
+      raise "The object you provided is not a device" unless device.kind_of?(SimpleMDM::Device)
 
       hash, code = fetch("device_groups/#{self.id}/devices/#{device.id}", :post)
 
