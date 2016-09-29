@@ -1,9 +1,19 @@
 module SimpleMDM
   class App < Base
 
+    # overwrite base class
+    def initialize(source_hash = nil, default = nil, &blk)
+      if source_hash && source_hash.kind_of?(Hash) && binary = source_hash[:binary]
+        self.binary = binary
+        source_hash.delete(:binary)
+      end
+
+      super(source_hash, detault, &blk)
+    end
+
     def build(hash = nil)
       @dirty = false
-      @binary_data = nil
+      @binary_file = nil
 
       super
     end
@@ -27,9 +37,21 @@ module SimpleMDM
       @binary_file = val
     end
 
+    def name=(val)
+      if val != self.name
+        @dirty = true
+      end
+
+      self['name'] = val
+    end
+
     def save
-      if (@dirty || new?) && @binary_file
-        params = { binary: @binary_file }
+      raise "binary must be set before saving" if new? && @binary_file.nil?
+
+      if @dirty || new?
+        params = {}
+        params[:name]   = self.name unless self.name.nil?
+        params[:binary] = @binary_file if @binary_file
 
         if new?
           hash, code = fetch("apps", :post, params)

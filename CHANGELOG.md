@@ -16,3 +16,8 @@
 
 ## [0.1.0] - 2015-10-20
 - Initial release
+
+## [1.1.3] - 2016-9-29
+### Fixed
+- New App objects failed to save when 'binary' was declared as an initialization argument.
+- App objects were not able to update their 'name' attribute.
