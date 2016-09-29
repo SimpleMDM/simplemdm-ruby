@@ -38,9 +38,9 @@ device.lock message:      "This device has been locked. Please call the number p
 
 # upload an enterprise app and deploy it to a group of devices
 
-app_data = IO.binread('surfreport2.2.ipa')
-app      = SimpleMDM::App.new name:   "Surf Report",
-                              binary: data
+data = File.open('surfreport2.2.ipa')
+app  = SimpleMDM::App.new name:   "Surf Report",
+                          binary: data
 app.save
 
 app_group = SimpleMDM::AppGroup.find(37)
