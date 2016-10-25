@@ -21,3 +21,11 @@
 ### Fixed
 - New App objects failed to save when 'binary' was declared as an initialization argument.
 - App objects were not able to update their 'name' attribute.
+
+## [1.2.0] - 2016-10-25
+### Added
+- Create new devices
+- Uninstall installed, managed apps from devices
+
+### Fixed
+- App groups could not be deleted

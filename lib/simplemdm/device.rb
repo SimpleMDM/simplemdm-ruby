@@ -13,6 +13,25 @@ module SimpleMDM
       build hash['data']
     end
 
+    def save
+      unless new?
+        raise "You can only save new device objects"
+      end
+
+      params = {}
+      params[:name]     = self.name unless self.name.nil?
+      params[:group_id] = self.group_id unless self.group_id.nil?
+
+      hash, code = fetch("devices", :post, params)
+
+      self.id = hash['data']['id']
+      self.merge!(hash['data']['attributes'])
+
+      @dirty = false
+
+      self
+    end
+
     def installed_apps
       raise "You cannot retrieve installed apps for a device that hasn't been created yet." if new?
 

@@ -59,7 +59,7 @@ module SimpleMDM
     def destroy
       raise "You cannot delete an app group that hasn't been created yet" if new?
 
-      hash, code = fetch("app_groups/#{self.id}")
+      hash, code = fetch("app_groups/#{self.id}", :delete)
 
       code == 204
     end
