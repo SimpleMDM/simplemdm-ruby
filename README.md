@@ -1,3 +1,5 @@
+**Please Note:** This library does not currently wrap the complete functionality of the SimpleMDM API. For a current listing of API functionality, please refer to the SimpleMDM documentation at [http://www.simplemdm.com/docs/api/](http://www.simplemdm.com/docs/api/).
+
 # SimpleMDM Ruby bindings
 
 This is a lightweight SDK that acts as a launching point for integrating ruby-based applications with [SimpleMDM](http://www.simplemdm.com/). The native API is a RESTful JSON implementation. These bindings wrap the API.
