@@ -29,3 +29,6 @@
 
 ### Fixed
 - App groups could not be deleted
+
+## [1.3.0] - 2017-10-06
+- Updated rest-client gem dependency to ~>2.0

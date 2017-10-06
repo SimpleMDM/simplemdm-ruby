@@ -1,4 +1,9 @@
-**Please Note:** This library does not currently wrap the complete functionality of the SimpleMDM API. For a current listing of API functionality, please refer to the SimpleMDM documentation at [http://www.simplemdm.com/docs/api/](http://www.simplemdm.com/docs/api/).
+**Please Note:** This library is not officially supported nor maintained. It does not currently wrap the complete functionality of the SimpleMDM API. For a current listing of API functionality, please refer to the SimpleMDM documentation at [http://www.simplemdm.com/docs/api/](http://www.simplemdm.com/docs/api/).
+
+## Related Projects
+
+* [simpleMDMpy](https://github.com/SteveKueng/simpleMDMpy) - Python library
+* [simplemdmcollection](https://github.com/thomas-dam/simplemdmcollection) - Postman collection
 
 # SimpleMDM Ruby bindings
 
