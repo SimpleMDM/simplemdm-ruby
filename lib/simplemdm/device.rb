@@ -74,5 +74,13 @@ module SimpleMDM
       code == 202
     end
 
+    def refreash
+      raise "You cannot refresh device that hasn't been created yet." if new?
+
+      hash, code = fetch("devices/#{id}/refresh", :post)
+
+      code == 202
+    end
+
   end
 end
