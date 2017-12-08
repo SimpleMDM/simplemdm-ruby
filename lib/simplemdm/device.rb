@@ -66,6 +66,13 @@ module SimpleMDM
       code == 202
     end
 
+    def restart
+      raise "You cannot reset device that hasn't been created yet." if new?
+
+      hash, code = fetch("devices/#{id}/restart", :post)
+
+      code == 202
+    end
 
   end
 end
